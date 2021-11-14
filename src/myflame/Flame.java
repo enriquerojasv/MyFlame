@@ -75,9 +75,48 @@ public class Flame extends Thread {
                 pixel + 3 < this.buffer.length; pixel += pixelLength) {
 
             buffer[pixel] = (byte) 255; // alpha
-            buffer[pixel + 1] = (byte) 0; // blue
-            buffer[pixel + 2] = (byte) 0; // green
-            buffer[pixel + 3] = (byte) temperature[col][row]; // red
+
+            if (temperature[col][row] > 200) {
+
+                buffer[pixel + 1] = (byte) 255; // blue
+                buffer[pixel + 2] = (byte) 255; // green
+                buffer[pixel + 3] = (byte) 255; // red
+            } else if (temperature[col][row] > 150) {
+
+                buffer[pixel + 1] = (byte) 0; // blue
+                buffer[pixel + 2] = (byte) 255; // green
+                buffer[pixel + 3] = (byte) 255; // red
+            } else if (temperature[col][row] > 125) {
+
+                buffer[pixel + 1] = (byte) 0; // blue
+                buffer[pixel + 2] = (byte) 150; // green
+                buffer[pixel + 3] = (byte) 255; // red
+            } else if (temperature[col][row] > 100) {
+
+                buffer[pixel + 1] = (byte) 0; // blue
+                buffer[pixel + 2] = (byte) 100; // green
+                buffer[pixel + 3] = (byte) 255; // red
+            } else if (temperature[col][row] > 75) {
+
+                buffer[pixel + 1] = (byte) 0; // blue
+                buffer[pixel + 2] = (byte) 0; // green
+                buffer[pixel + 3] = (byte) 255; // red
+            } else if (temperature[col][row] > 50) {
+
+                buffer[pixel + 1] = (byte) 0; // blue
+                buffer[pixel + 2] = (byte) 0; // green
+                buffer[pixel + 3] = (byte) 185; // red
+            } else if (temperature[col][row] > 10) {
+
+                buffer[pixel + 1] = (byte) 0; // blue
+                buffer[pixel + 2] = (byte) 0; // green
+                buffer[pixel + 3] = (byte) temperature[col][row]; // red
+            } else if (temperature[col][row] > 0) {
+
+                buffer[pixel + 1] = (byte) temperature[col][row]; // blue
+                buffer[pixel + 2] = (byte) temperature[col][row]; // green
+                buffer[pixel + 3] = (byte) temperature[col][row]; // red
+            }
 
             col++;
             if (col == this.WIDTH) {
@@ -140,13 +179,13 @@ public class Flame extends Thread {
                 if (avg < 0) {
                     avg = 0;
                 }
-                temp[i][j-1] = avg;
+                temp[i][j - 1] = avg;
             }
         }
 
         System.arraycopy(temp, 0, temperature, 0, temp.length);
 
-    }    
+    }
 
     @Override
     public void run() {

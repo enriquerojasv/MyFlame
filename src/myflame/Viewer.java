@@ -1,7 +1,6 @@
 package myflame;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import static java.lang.Thread.sleep;
@@ -22,13 +21,11 @@ public class Viewer extends Canvas implements Runnable {
 
     public Viewer(Dimension size, int rate, Flame flame) {
         this.canvas = new Canvas();
-
-        canvas.setPreferredSize(size);
-        canvas.setMaximumSize(size);
-        canvas.setMinimumSize(size);
-
         this.rate = rate;
         this.flame = flame;
+        canvas.setPreferredSize(size);
+        canvas.setMaximumSize(size);
+        canvas.setMinimumSize(size);        
     }
 
     public Canvas getCanvas() {
@@ -53,6 +50,7 @@ public class Viewer extends Canvas implements Runnable {
         }
     }
 
+    @Override
     public void run() {
         while (stoped == false) {
             this.repaint();

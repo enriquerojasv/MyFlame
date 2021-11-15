@@ -6,4 +6,19 @@ package myflame;
  */
 public class FlamePalette {
     
+    public void addTargetColor(){
+        
+    }
+    
+    public void getColor(){
+        
+    }
+    
+    private void createColors(){
+        
+    }
+    
+    private void interpolateColors(){
+        
+    }
 }
